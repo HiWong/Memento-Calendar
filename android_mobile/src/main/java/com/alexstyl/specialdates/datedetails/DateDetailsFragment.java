@@ -33,7 +33,7 @@ import com.alexstyl.specialdates.analytics.Analytics;
 import com.alexstyl.specialdates.analytics.AnalyticsProvider;
 import com.alexstyl.specialdates.android.AndroidStringResources;
 import com.alexstyl.specialdates.contact.Contact;
-import com.alexstyl.specialdates.contact.actions.LabeledAction;
+import com.alexstyl.specialdates.datedetails.actions.LabeledAction;
 import com.alexstyl.specialdates.date.ContactEvent;
 import com.alexstyl.specialdates.date.Date;
 import com.alexstyl.specialdates.date.DateDisplayStringCreator;
@@ -102,11 +102,7 @@ public class DateDetailsFragment extends MementoFragment {
         }
 
         @Override
-        public void onContactActionsMenuClicked(View view, Contact contact) {
-            final List<LabeledAction> actions = contact.getUserActions(getActivity());
-            if (actions == null) {
-                return;
-            }
+        public void onContactActionsMenuClicked(View view, Contact contact, final List<LabeledAction> actions) {
             int size = actions.size();
             PopupMenu popup = new PopupMenu(getActivity(), view);
             for (int i = 0; i < size; i++) {

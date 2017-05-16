@@ -7,14 +7,14 @@ import com.alexstyl.resources.ColorResources;
 import com.alexstyl.resources.StringResources;
 import com.alexstyl.specialdates.R;
 import com.alexstyl.specialdates.contact.Contact;
-import com.alexstyl.specialdates.contact.actions.LabeledAction;
+import com.alexstyl.specialdates.datedetails.actions.LabeledAction;
 import com.alexstyl.specialdates.images.ImageLoader;
-import com.alexstyl.specialdates.images.UILImageLoader;
 import com.alexstyl.specialdates.ui.widget.ActionButton;
 
 import java.util.List;
 
 class DetailedDateDetailsViewHolder extends DateDetailsViewHolder {
+
     private final ContactCardListener listener;
     private final LinearLayout cardActions;
     private final CardActionRecycler cardActionRecycler;
@@ -28,7 +28,6 @@ class DetailedDateDetailsViewHolder extends DateDetailsViewHolder {
                                   CardActionRecycler cardActionRecycler
     ) {
         super(itemView, imageLoader, stringResources, colorResources);
-
         this.listener = listener;
         this.actionMarginHorizontal = itemView.getResources().getDimensionPixelSize(R.dimen.card_action_horizontal_margin);
         this.cardActions = (LinearLayout) itemView.findViewById(R.id.card_actions);
@@ -36,9 +35,8 @@ class DetailedDateDetailsViewHolder extends DateDetailsViewHolder {
     }
 
     @Override
-    void bindActionsFor(Contact contact, ContactCardListener listener) {
+    void bindActionsFor(Contact contact, ContactCardListener listener, List<LabeledAction> actions) {
         removeAllActions();
-        List<LabeledAction> actions = contact.getUserActions(itemView.getContext());
         if (containsNoActions(actions)) {
             cardActions.setVisibility(View.GONE);
         } else {

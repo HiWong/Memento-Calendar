@@ -10,15 +10,14 @@ class GridWithHeaderSpacesItemDecoration extends RecyclerView.ItemDecoration {
     private int halfSpacing;
     private int spacing;
     private DateDetailsAdapter adapter;
-    private int numberOfHeaders;
 
-    public GridWithHeaderSpacesItemDecoration(int size, DateDetailsAdapter adapter) {
+    GridWithHeaderSpacesItemDecoration(int size, DateDetailsAdapter adapter) {
         this.spacing = size;
         this.adapter = adapter;
         this.halfSpacing = size / 2;
     }
 
-    public void setNumberOfColumns(int columnCount) {
+    void setNumberOfColumns(int columnCount) {
         this.columnCount = columnCount;
     }
 
@@ -48,13 +47,4 @@ class GridWithHeaderSpacesItemDecoration extends RecyclerView.ItemDecoration {
         return adapter.isFullRowAt(itemPos);
     }
 
-    private boolean isTopRow(int pos) {
-        if (isHeader(pos)) {
-            return true;
-        }
-        if (pos / columnCount == 0) {
-            return true;
-        }
-        return false;
-    }
 }

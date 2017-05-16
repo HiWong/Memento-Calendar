@@ -1,4 +1,4 @@
-package com.alexstyl.specialdates.contact.actions;
+package com.alexstyl.specialdates.datedetails.actions;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * LabeledAction that displays a dialog wih
  * <p>Created by Alex on 9/5/2014.</p>
  */
-public class EMailAction implements IntentAction {
+class EMailAction implements IntentAction {
 
     private final long contactId;
 

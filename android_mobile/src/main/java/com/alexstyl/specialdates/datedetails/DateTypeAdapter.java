@@ -14,17 +14,16 @@ import com.alexstyl.specialdates.entity.DataType;
 
 import java.util.List;
 
-public class SimpleDataAdapter extends BaseAdapter {
+public class DateTypeAdapter extends BaseAdapter {
     private final List<DataType> objects;
     private final Resources res;
     private final int dataType;
     private final LayoutInflater mInflater;
 
-    @SuppressWarnings("unchecked")
-    public SimpleDataAdapter(Context context, List<? extends DataType> object, int dataType) {
+    public DateTypeAdapter(Context context, List<DataType> datatypes, int dataType) {
         this.mInflater = LayoutInflater.from(context);
         this.dataType = dataType;
-        this.objects = (List<DataType>) object;
+        this.objects = datatypes;
         this.res = context.getResources();
 
     }

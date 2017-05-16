@@ -1,4 +1,4 @@
-package com.alexstyl.specialdates.contact.actions;
+package com.alexstyl.specialdates.datedetails.actions;
 
 import org.junit.Before;
 import org.junit.Test;

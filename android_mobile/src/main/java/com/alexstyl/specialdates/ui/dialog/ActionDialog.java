@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.alexstyl.specialdates.BuildConfig;
 import com.alexstyl.specialdates.ErrorTracker;
 import com.alexstyl.specialdates.R;
-import com.alexstyl.specialdates.datedetails.SimpleDataAdapter;
+import com.alexstyl.specialdates.datedetails.DateTypeAdapter;
 import com.alexstyl.specialdates.entity.DataType;
 import com.alexstyl.specialdates.entity.Email;
 import com.alexstyl.specialdates.entity.Phone;
@@ -120,7 +120,6 @@ public class ActionDialog extends MementoDialog {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         int dataType = getArguments().getInt(ARG_DATATYPE);
         String title = getString(R.string.choose) + " ";
         if (dataType == DataType.TYPE_PHONE) {
@@ -128,9 +127,8 @@ public class ActionDialog extends MementoDialog {
         } else if (dataType == DataType.TYPE_EMAIL) {
             title = title + getString(R.string.email);
         }
-
         ArrayList<DataType> dataz = getArguments().getParcelableArrayList(ARG_DATA);
-        SimpleDataAdapter adapter = new SimpleDataAdapter(getActivity(), dataz, dataType);
+        DateTypeAdapter adapter = new DateTypeAdapter(getActivity(), dataz, dataType);
         return new AlertDialog.Builder(getActivity())
                 .setTitle(title)
                 .setAdapter(

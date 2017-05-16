@@ -3,7 +3,9 @@ package com.alexstyl.specialdates.datedetails;
 import android.view.View;
 
 import com.alexstyl.specialdates.contact.Contact;
-import com.alexstyl.specialdates.contact.actions.LabeledAction;
+import com.alexstyl.specialdates.datedetails.actions.LabeledAction;
+
+import java.util.List;
 
 interface ContactCardListener {
 
@@ -11,6 +13,6 @@ interface ContactCardListener {
 
     void onActionClicked(View v, LabeledAction action);
 
-    void onContactActionsMenuClicked(View v, Contact contact);
+    void onContactActionsMenuClicked(View v, Contact contact, final List<LabeledAction> actions);
 
 }

@@ -10,8 +10,11 @@ import com.alexstyl.specialdates.R;
 import com.alexstyl.specialdates.contact.Contact;
 import com.alexstyl.specialdates.date.ContactEvent;
 import com.alexstyl.specialdates.date.Date;
+import com.alexstyl.specialdates.datedetails.actions.LabeledAction;
 import com.alexstyl.specialdates.images.ImageLoader;
 import com.alexstyl.specialdates.ui.widget.ColorImageView;
+
+import java.util.List;
 
 abstract class DateDetailsViewHolder extends RecyclerView.ViewHolder {
     private final ColorImageView avatar;
@@ -31,7 +34,7 @@ abstract class DateDetailsViewHolder extends RecyclerView.ViewHolder {
         this.colorResources = colorResources;
     }
 
-    public void bind(ContactEvent event, Date date, final ContactCardListener listener) {
+    public void bind(ContactEvent event, Date date, final ContactCardListener listener, List<LabeledAction> arrayList) {
         final Contact contact = event.getContact();
         avatar.setBackgroundVariant((int) contact.getContactID());
         String displayNameString = contact.getDisplayName().toString();
@@ -48,10 +51,10 @@ abstract class DateDetailsViewHolder extends RecyclerView.ViewHolder {
                 }
         );
         updateEventLabel(event, date);
-        bindActionsFor(contact, listener);
+        bindActionsFor(contact, listener, arrayList);
     }
 
-    abstract void bindActionsFor(Contact contact, ContactCardListener listener);
+    abstract void bindActionsFor(Contact contact, ContactCardListener listener, List<LabeledAction> actions);
 
     private void updateEventLabel(ContactEvent event, Date date) {
         eventLabel.setTextColor(colorResources.getColor(event.getType().getColorRes()));

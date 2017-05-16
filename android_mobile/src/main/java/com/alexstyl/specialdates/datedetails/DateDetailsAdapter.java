@@ -13,6 +13,7 @@ import com.alexstyl.specialdates.Optional;
 import com.alexstyl.specialdates.R;
 import com.alexstyl.specialdates.date.ContactEvent;
 import com.alexstyl.specialdates.date.Date;
+import com.alexstyl.specialdates.datedetails.actions.LabeledAction;
 import com.alexstyl.specialdates.events.bankholidays.BankHoliday;
 import com.alexstyl.specialdates.events.namedays.NamedayLocale;
 import com.alexstyl.specialdates.events.namedays.NamedayPreferences;
@@ -31,7 +32,7 @@ import java.util.List;
 
 import static com.alexstyl.specialdates.Optional.absent;
 
-public class DateDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class DateDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int DETAILED_CARDS_NUMBER_LIMIT = 2;
 
@@ -50,14 +51,14 @@ public class DateDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private final ColorResources colorResources;
     private Date dateToDisplay;
 
-    public static DateDetailsAdapter newInstance(Context context,
-                                                 Date dateToDisplay,
-                                                 OnSupportCardClickListener supportListener,
-                                                 NamedayCardView.OnShareClickListener namedayListener,
-                                                 ContactCardListener contactCardListener,
-                                                 Optional<BankHoliday> bankholiday,
-                                                 StringResources stringResources,
-                                                 ColorResources colorResources
+    static DateDetailsAdapter newInstance(Context context,
+                                          Date dateToDisplay,
+                                          OnSupportCardClickListener supportListener,
+                                          NamedayCardView.OnShareClickListener namedayListener,
+                                          ContactCardListener contactCardListener,
+                                          Optional<BankHoliday> bankholiday,
+                                          StringResources stringResources,
+                                          ColorResources colorResources
     ) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         Resources resources = context.getResources();
@@ -189,7 +190,11 @@ public class DateDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((NameDayCardViewHolder) holder).bind(nameday.get());
         } else if (type == VIEW_TYPE_DETAILED || type == VIEW_TYPE_COMPACT) {
             ContactEvent event = getEvent(position);
-            ((DateDetailsViewHolder) holder).bind(event, dateToDisplay, contactCardListener);
+            List<LabeledAction> userActions = new ArrayList<>();
+            if (userActions.isEmpty()) {
+                throw new UnsupportedOperationException();
+            }
+            ((DateDetailsViewHolder) holder).bind(event, dateToDisplay, contactCardListener, userActions);
         } else if (type == VIEW_TYPE_BANKHOLIDAY) {
             ((BankViewHolder) holder).bind(bankholiday.get());
         } else {

@@ -1,15 +1,11 @@
-package com.alexstyl.specialdates.contact.actions;
+package com.alexstyl.specialdates.datedetails.actions;
 
 import com.alexstyl.specialdates.R;
 
-public class ContactActionFactory {
-
-    private static ContactActionFactory INSTANCE;
+public enum ContactActionFactory {
+    INSTANCE;
 
     public static ContactActionFactory get() {
-        if (INSTANCE == null) {
-            INSTANCE = new ContactActionFactory();
-        }
         return INSTANCE;
     }
 

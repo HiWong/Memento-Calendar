@@ -7,7 +7,7 @@ import com.alexstyl.resources.ColorResources;
 import com.alexstyl.resources.StringResources;
 import com.alexstyl.specialdates.R;
 import com.alexstyl.specialdates.contact.Contact;
-import com.alexstyl.specialdates.contact.actions.LabeledAction;
+import com.alexstyl.specialdates.datedetails.actions.LabeledAction;
 import com.alexstyl.specialdates.images.ImageLoader;
 
 import java.util.List;
@@ -24,15 +24,14 @@ class CompactDateDetailsViewHolder extends DateDetailsViewHolder {
     }
 
     @Override
-    void bindActionsFor(final Contact contact, final ContactCardListener listener) {
-        List<LabeledAction> userActions = contact.getUserActions(cardView.getContext());
-        if (userActions.size() > 0) {
+    void bindActionsFor(final Contact contact, final ContactCardListener listener, final List<LabeledAction> actions) {
+        if (actions.size() > 0) {
             more.setVisibility(View.VISIBLE);
             more.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            listener.onContactActionsMenuClicked(v, contact);
+                            listener.onContactActionsMenuClicked(v, contact, actions);
                         }
                     }
             );
